@@ -6,21 +6,23 @@ export class CuentaCorriente
     numero;
     agencia;
     #saldo;
+    static cantidadCuentas = 0;
 
-    set setCliente(valor) {
+    set cliente(valor) {
         if (valor instanceof Cliente)
             this.#cliente = valor;
     }
 
-    get getCliente() {
+    get cliente() {
         return this.#cliente;
     }
 
-    constructor() {
-        this.#cliente = null;
-        this.numero = '';
-        this.agencia = '';
+    constructor(cliente, numero, agencia) {
+        this.cliente = cliente;
+        this.numero = numero;
+        this.agencia = agencia;
         this.#saldo = 0;
+        CuentaCorriente.cantidadCuentas++;
     }
 
     depositoEnCuenta(valor) {
