@@ -1,3 +1,4 @@
+/*Definición de clases*/
 class Cliente
 {
     nombreCliente;
@@ -8,31 +9,42 @@ class Cliente
 class CuentaCorriente
 {
     numero;
-    saldo;
+    #saldo;
     agencia;
+
+    constructor() {
+        this.#saldo = 0;
+        this.numero = '';
+        this.agencia = '';
+    }
+
+    depositoEnCuenta(valor) {
+        if (valor > 0)
+            this.#saldo += valor;
+        return this.#saldo;
+    }
+
+    retirarDeCuenta(valor) {
+        if (valor <= this.#saldo)
+            this.#saldo -= valor;
+        return this.#saldo;
+    }
+
+    verSaldo() {
+        return this.#saldo;
+    }
 }
 
-const cliente1 = new Cliente();
+cuentaDeLeonardo = new CuentaCorriente();
+//cuentaDeLeonardo.#saldo = 10;
+let saldo = cuentaDeLeonardo.verSaldo(); 
+console.log('El Saldo actual es '+saldo);
 
-cliente1.nombreCliente = "José";
-cliente1.dniCliente = "13232";
+saldo = cuentaDeLeonardo.depositoEnCuenta(100);
+console.log('El Saldo actual es '+saldo);
 
-const cuentaCorriente1 = new CuentaCorriente();
+saldo = cuentaDeLeonardo.retirarDeCuenta(100);
+console.log('El Saldo actual es '+saldo);
 
-cuentaCorriente1.numero = "232323";
-cuentaCorriente1.saldo = 5000;
-
-const cliente2 = new Cliente();
-
-cliente2.nombreCliente = "Leonardo";
-cliente2.dniCliente = "13804050";
-
-const cuentaCorriente2 = new CuentaCorriente();
-
-cuentaCorriente2.numero = "123434343";
-cuentaCorriente2.saldo = 1000;
-
-console.log(cliente1);
-console.log(cuentaCorriente1);
-console.log(cliente2);
-console.log(cuentaCorriente2);
+saldo = cuentaDeLeonardo.depositoEnCuenta(10)
+console.log('El Saldo actual es '+saldo);
